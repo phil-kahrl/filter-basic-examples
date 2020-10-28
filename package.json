@@ -1,0 +1,11 @@
+{
+  "name": "filter-basic-examples",
+  "version": "1.0.0",
+  "description": "Basic example of using the arccore filter library.",
+  "main": "index.js",
+  "author": "Phillip Kahrl",
+  "license": "MIT",
+  "dependencies": {
+    "@encapsule/arccore": "^0.1.10"
+  }
+}
