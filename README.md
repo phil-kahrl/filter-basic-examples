@@ -1,3 +1,3 @@
 # filter-basic-examples
 
-Basic example on usage of the arccore.Filter library.
+Basic examples on usage of the [arccore.Filter](https://encapsule.io/docs/ARCcore/filter) library.

@@ -19,7 +19,7 @@ factoryResponse = arccore.filter.create({
     }
 });
 
-// Call the request() functio without a string - this will return the default value
+// Call the request() function without a string - this will return the default value
 console.log(factoryResponse.result.request());
 // { error: null, result: 'foo' }
 
@@ -53,5 +53,68 @@ factoryResponse = arccore.filter.create({
 
 console.log(factoryResponse.result.request());
 //{error: "Filter [uiPixY9FTryO8Ix7yjoGWQ::unnamed] failed while verifying response signature of main operation. Error at path '~': Value of type 'jsString' not in allowed type set [jsObject].",result: null}
+
+//Object as input
+factoryResponse = arccore.filter.create({
+    operationID: "demo",
+    inputFilterSpec: {
+        ____accept: "jsObject",
+    }
+});
+console.log(factoryResponse.result.request({foo: "bar"}));
+// { error: null, result: { foo: 'bar' } }
+
+// Using "____types" to specify the exact shape of an object.
+factoryResponse = arccore.filter.create({
+    operationID: "demo",
+    inputFilterSpec: {
+        ____types: "jsObject",
+        a: {
+            ____accept: "jsString"
+        }
+    }
+});
+console.log(factoryResponse.result.request({a: "a", b: "b"}));
+
+// ____types also can be used with arrays to ensure that each member of the array
+// has an expected shape.
+
+factoryResponse = arccore.filter.create({
+    operationID: "demo",
+    inputFilterSpec: {
+        ____types: "jsArray",
+        element: { // specifies what each element of the array should be
+            ____types: "jsObject",
+            b: {
+                ____accept: "jsString"
+            }
+        }
+    }
+});
+console.log(factoryResponse.result.request([{a: "a", b: "b"}]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
